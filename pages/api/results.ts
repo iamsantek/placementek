@@ -1,6 +1,6 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { AnswerKey, Answers, Results } from '../../types/types';
+import { AnswerKey, Answers, Results } from '../../types/types'
 
 const answers: AnswerKey[] = [
   {
@@ -25,26 +25,26 @@ const answers: AnswerKey[] = [
 
 const getEnglishLevel = (score: number): string => {
   if (score < 0.5) {
-    return 'Beginner';
+    return 'Beginner'
   } else if (score < 0.8) {
-    return 'Intermediate';
+    return 'Intermediate'
   } else {
-    return 'Advanced';
+    return 'Advanced'
   }
 }
 
-export default function handler(
+export default function handler (
   req: NextApiRequest,
   res: NextApiResponse<Results>
 ) {
-  const answersSent = req.body.answers as Answers;
-  let score: number = 0;
+  const answersSent = req.body.answers as Answers
+  let score: number = 0
 
   Object.entries(answersSent).forEach(([questionId, answer]) => {
     console.log([questionId, answer])
-    const selectedAnswer = answers.find(a => a.id === questionId)?.keys[answer] || 0;
-    score += selectedAnswer;
-  });
+    const selectedAnswer = answers.find(a => a.id === questionId)?.keys[answer] || 0
+    score += selectedAnswer
+  })
 
   res.status(200).json({
     score,

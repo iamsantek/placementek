@@ -2,12 +2,12 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { ContactFormInputs } from '../../types/types'
 
-export default function handler(
+export default function handler (
   req: NextApiRequest,
   res: NextApiResponse<any>
 ) {
+  // TODO
   const formData = req.body as ContactFormInputs
 
-
-  res.status(200).json({name: "200"})
+  res.status(200).json(formData)
 }
