@@ -1,4 +1,4 @@
-import { Button, FormControl, FormHelperText, FormLabel, Input, Stack } from '@chakra-ui/react'
+import { Button, FormControl, FormLabel, Input, Stack } from '@chakra-ui/react'
 import { useForm, SubmitHandler, Controller } from 'react-hook-form'
 import PhoneInput from 'react-phone-input-2'
 import 'react-phone-input-2/lib/style.css'
@@ -10,15 +10,15 @@ interface Props {
 }
 
 export const ContactForm = ({ onFinish } : Props) => {
-  const { control, register, handleSubmit, watch, formState: { errors } } = useForm<ContactFormInputs>()
-  const onSubmit: SubmitHandler<ContactFormInputs> = data => sendCourses()
+  const { control, register, handleSubmit, watch } = useForm<ContactFormInputs>()
 
-  const sendCourses = async () => {
+  const sendContactForm = async (form: ContactFormInputs) => {
     const formData = watch()
-    const sendCourse = await PlacementService.sendForm(formData)
-    console.log({ sendCourse })
-    onFinish()
+    await PlacementService.sendForm(formData)
+    onFinish(form)
   }
+
+  const onSubmit: SubmitHandler<ContactFormInputs> = data => sendContactForm(data)
 
   return (
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -26,7 +26,6 @@ export const ContactForm = ({ onFinish } : Props) => {
                 <FormControl isRequired>
                     <FormLabel htmlFor='email'>Email</FormLabel>
                     <Input id='email' type='email' placeholder="juan@gmail.com" {...register('email')} />
-                    {/* <FormHelperText>We'll never share your email.</FormHelperText> */}
                 </FormControl>
                 <FormControl isRequired>
                     <FormLabel htmlFor='first-name'>Full name</FormLabel>
@@ -44,7 +43,6 @@ export const ContactForm = ({ onFinish } : Props) => {
                                 value={value}
                                 onChange={onChange}
                                 countryCodeEditable={false}
-                                width='100%'
                             />
                         )}
                     />

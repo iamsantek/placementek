@@ -15,11 +15,9 @@ type Question = {
   options: Options[]
 }
 
-export default function handler(
+export default function handler (
   req: NextApiRequest,
   res: NextApiResponse<Question[]>
 ) {
-
-
   res.status(200).json(questions)
 }
