@@ -1,4 +1,4 @@
-import { useRadio, Box, Text, Square } from '@chakra-ui/react'
+import { useRadio, Box, Text } from '@chakra-ui/react'
 
 export function ChoiceOption (props: any) {
   const { getInputProps, getCheckboxProps } = useRadio(props)
@@ -30,9 +30,16 @@ export function ChoiceOption (props: any) {
         alignContent='center'
         alignItems='center'
       >
-        <Square h={7} w={7} border='1px' borderColor='gray.100'>
+        <Box
+        h={7}
+        w={7}
+        border='1px'
+        display='flex'
+        borderColor='gray.100'
+        alignContent='center'
+        justifyContent='center'>
           <Text>{props.letter}</Text>
-        </Square>
+        </Box>
         {props.children}
       </Box>
     </Box>
