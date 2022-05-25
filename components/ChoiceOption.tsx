@@ -16,7 +16,7 @@ export function ChoiceOption (props: any) {
         borderRadius='md'
         boxShadow='md'
         _checked={{
-          bg: 'brand.400',
+          bg: 'brand.primary',
           color: 'white'
         }}
         _focus={{

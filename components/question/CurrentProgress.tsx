@@ -1,12 +1,15 @@
 import { CircularProgress, CircularProgressLabel } from '@chakra-ui/react'
 
 interface Props {
-    currentQuestion: number
-    totalQuestions: number
+    current: number
+    total: number
+    label?: string;
 }
 
-export const CurrentProgress = ({ currentQuestion, totalQuestions }: Props) => (
-    <CircularProgress value={(currentQuestion / totalQuestions) * 100} color='brand.400' thickness='12px'>
-    <CircularProgressLabel>{Math.round((currentQuestion / totalQuestions) * 100)}%</CircularProgressLabel>
+export const CurrentProgress = ({ current, total, label }: Props) => (
+    <CircularProgress value={(current / total) * 100} color='brand.primary' thickness='12px'>
+    <CircularProgressLabel>
+        {label || `${Math.round((current / total) * 100)}%`}
+        </CircularProgressLabel>
     </CircularProgress>
 )

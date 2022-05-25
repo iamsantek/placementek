@@ -1,7 +1,7 @@
 export enum QuestionType {
-    AUDIO = "audio",
-    VIDEO = "video",
-    TEXT = "text"
+    AUDIO = 'audio',
+    VIDEO = 'video',
+    TEXT = 'text'
 }
 
 export interface Question {
@@ -37,10 +37,20 @@ export interface AnswerKey {
     }
   }
 
-export type Answers = { [key: string]: string }
+export type Answers = { [key: string]: string | undefined }
 
 export type ContactFormInputs = {
     email: string,
     fullName: string,
     phoneNumber: string
 };
+
+export type Timer = {
+    type: 'question' | 'global',
+    timeInSeconds: number
+}
+
+export type PlacementConfiguration = {
+    timer: Timer
+    questions: Question[]
+  }

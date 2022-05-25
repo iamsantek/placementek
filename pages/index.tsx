@@ -5,7 +5,7 @@ import { useMemo, useState } from 'react'
 import { Results } from '../components/Results'
 import { GoodByeScreen } from '../components/GoodByeScreen'
 import ContactScreen from '../components/ContactScreen'
-import { Intro } from '../components/Intro'
+import { Intro } from '../components/intro/Intro'
 
 enum CurrentScreen {
   Intro,
@@ -21,7 +21,10 @@ const Home: NextPage = () => {
   const [currentScreen, setCurrentScreen] = useState<CurrentScreen>(CurrentScreen.Intro)
 
   const screens = useMemo(() => ({
-    [CurrentScreen.Intro]: <Intro onStart={() => setCurrentScreen(CurrentScreen.Questions)} />,
+    [CurrentScreen.Intro]: <Intro onStart={() => {
+      setCurrentScreen(CurrentScreen.Questions)
+      window.scrollTo(0, 0)
+    }} />,
     [CurrentScreen.Questions]: <Questions onFinish={(results) => {
       setResults(results)
       setCurrentScreen(CurrentScreen.Results)

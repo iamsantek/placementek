@@ -28,7 +28,7 @@ export const Question = ({ question, onAnswer }: Props) => {
   return (
         <Stack spacing={10}>
             {questionTypeComponents[question.type]}
-            <Heading fontWeight='900' color='brand.500'>{question.text}</Heading>
+            <Heading fontWeight='900' color='brand.secondary'>{question.text}</Heading>
             <Stack spacing={4}>
                 {question.options.map((_, index) => {
                   const radio = getRadioProps({ value: _.id })
@@ -39,7 +39,7 @@ export const Question = ({ question, onAnswer }: Props) => {
                   )
                 })}
                 <Button
-                    color={'brand.300'}
+                    color={'brand.primary'}
                     isDisabled={!answer}
                     onClick={() => onAnswer(question, answer!)}
                 >

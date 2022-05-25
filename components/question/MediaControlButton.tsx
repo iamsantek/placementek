@@ -23,7 +23,7 @@ export const MediaControlButton = ({
         <Center display='flex' flexDirection={'column'}>
         <CircularProgress
             value={progress}
-            color='brand.400'
+            color='brand.primary'
             size='120px'
             justifyContent='center'
             cursor={maxPlays <= currentPlays ? 'no-drop' : 'pointer'}

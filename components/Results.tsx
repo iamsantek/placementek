@@ -30,7 +30,12 @@ export const Results = ({ results, onAction }: Props) => {
             >
                 <Text fontWeight='500' fontSize="2xl">Your level is</Text>
                 <Box borderColor='red.700' border='1px' p={[5, 5]}>
-                    <Heading>{results?.level}</Heading>
+                    <Heading
+                        bgGradient='linear(to-l, #7928CA, #FF0080)'
+                        bgClip='text'
+                        >
+                            {results?.level}
+                        </Heading>
                 </Box>
                 <Text fontWeight='500' fontSize="2xl">We have an special offer for you!</Text>
                 <Button

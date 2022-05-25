@@ -13,12 +13,13 @@ export const theme = extendTheme({
       200: '#98cbe5',
       300: '#71b9d8',
       400: '#4ca9cc',
-      500: '#3394b3',
+      500: '#020094',
       600: '#246c8c',
       700: '#144865',
       800: '#02263f',
       900: '#000b1a',
-      secondary: '#edc63a'
+      primary: '#020094',
+      secondary: '#DA597D'
     }
   }
 })
