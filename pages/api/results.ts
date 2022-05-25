@@ -41,7 +41,11 @@ export default function handler (
   let score: number = 0
 
   Object.entries(answersSent).forEach(([questionId, answer]) => {
-    console.log([questionId, answer])
+    if (!answer) {
+      // If the user didn't answer the question, we don't count it towards the score
+      return
+    }
+
     const selectedAnswer = answers.find(a => a.id === questionId)?.keys[answer] || 0
     score += selectedAnswer
   })
