@@ -57,19 +57,20 @@ export const Questions = ({ onFinish }: Props) => {
     })
   }
 
-  const listener = (event: any) => {
+  const onChangeBrowserTab = () => {
+    // TODO: Check if the user is on the same tab
     if (document.visibilityState === 'visible') {
-      console.log('tab is active')
+      console.log('Active')
     } else {
-      console.log('tab is inactive')
+      console.log('Inactive')
     }
   }
 
   useEffect(() => {
-    document.addEventListener('visibilitychange', listener)
+    document.addEventListener('visibilitychange', onChangeBrowserTab)
 
     return () => {
-      document.removeEventListener('visibilitychange', listener)
+      document.removeEventListener('visibilitychange', onChangeBrowserTab)
     }
   }, [])
 
