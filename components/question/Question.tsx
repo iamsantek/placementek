@@ -1,5 +1,5 @@
 import { Heading, Stack, Button, useRadioGroup } from '@chakra-ui/react'
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { ChoiceOption } from '../ChoiceOption'
 import { AudioQuestion, Question as IQuestion, QuestionType, VideoQuestion as IVideoQuestion } from '../../types/types'
 import { AudioQuestions } from './AudioQuestion'
@@ -24,6 +24,8 @@ export const Question = ({ question, onAnswer }: Props) => {
     [QuestionType.TEXT]: <></>,
     [QuestionType.VIDEO]: <VideoQuestion question={question as IVideoQuestion} />
   }), [question])
+
+  useEffect(() => setAnswer(undefined), [question])
 
   return (
         <Stack spacing={10}>
