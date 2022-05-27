@@ -3,9 +3,9 @@ import { IconType } from 'react-icons'
 import { AiFillCheckCircle } from 'react-icons/ai'
 
 interface Instruction {
-    title: string;
-    description: string;
-    icon: IconType
+  title: string;
+  description: string;
+  icon: IconType
 }
 
 const instructions: Instruction[] = [
@@ -43,30 +43,30 @@ const instructions: Instruction[] = [
 
 export const IntroInstruction = () => {
   return (
-        <>
-            <Stack spacing={3} align='center'>
-            <Heading color='brand.primary' >Placementek</Heading>
-            <Text
-                        align='center'
-                        bgGradient='linear(to-l, #7928CA, #FF0080)'
-                        bgClip='text'
+    <>
+      <Stack spacing={3} marginY={7} align='center'>
+        <Text
+          align='center'
+          bgGradient='radial(#3cb371,#59da6b)'
+          bgClip='text'
+          fontWeight='bold'
+        >
+          This test must be completed in one session, make sure your internet is reliable also make sure you&apos;re finished before exiting</Text>
+      </Stack>
+      <List spacing={5} marginY={8}>
+        {instructions.map((instructions, index) => (
+          <ListItem key={index}>
+            <Box display='flex' alignContent='center'>
+              <ListIcon as={instructions.icon} color='brand.secondary' alignContent='center' alignSelf={'center'} />
+              <Text fontWeight='bold'>{instructions.title}</Text>
+            </Box>
+            <Box display='flex' flexDirection='column' marginTop={1}>
+              <Text fontWeight='thin' color='gray.500'>{instructions.description}</Text>
+            </Box>
+          </ListItem>
 
-            >This test must be completed in one session, make sure your internet is reliable also make sure you&apos;re finished before exiting</Text>
-            </Stack>
-            <List spacing={5} marginY={8}>
-                {instructions.map((instructions, index) => (
-                    <ListItem key={index}>
-                        <Box display='flex' alignContent='center'>
-                            <ListIcon as={instructions.icon} color='brand.secondary' alignContent='center' alignSelf={'center'} />
-                            <Text fontWeight='bold'>{instructions.title}</Text>
-                        </Box>
-                        <Box display='flex' flexDirection='column' marginTop={1}>
-                            <Text fontWeight='thin' color='gray.500'>{instructions.description}</Text>
-                        </Box>
-                    </ListItem>
-
-                ))}
-            </List>
-        </>
+        ))}
+      </List>
+    </>
   )
 }

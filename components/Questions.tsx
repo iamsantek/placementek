@@ -101,7 +101,7 @@ export const Questions = ({ onFinish }: Props) => {
   return (
     <PlacementContext.Provider value={placementConfiguration}>
       <Stack spacing={6} display='flex' alignContent='center' minWidth={['100%', 'container.md']}>
-        <Progress value={(currentQuestion + 1 / totalQuestions) * 100} colorScheme='brand' />
+        <Progress value={(currentQuestion + 1 / totalQuestions) * 100} colorScheme='green' />
         <Center flexDirection='column' gap={3}>
           <Timer onTimerFinish={handleTimerFinish} />
           <Text>Question {currentQuestion + 1} of {placementConfiguration?.questions.length || 0}</Text>

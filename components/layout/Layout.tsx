@@ -12,7 +12,11 @@ export default function Layout ({ children }: { children: React.ReactNode }) {
                     <title>Placementek</title>
                     <meta name="description" content="Craft simple and customizable skill tests." />
                     <link rel="icon" href="/favicon.png" />
-                    <meta name="theme-color" content="#ff0080" />
+                    <meta name="theme-color" content="#1EC276" />
+                    <meta
+                        property="og:image"
+                        content="/logo.png"
+                    />
                 </Head>
 
                 <main className={styles.main}>
@@ -26,7 +30,13 @@ export default function Layout ({ children }: { children: React.ReactNode }) {
                             target="_blank"
                             rel="noopener noreferrer"
                         >
-                            <Text color='pink.400' fontWeight='bold'>Santek.dev</Text>
+                            <Text
+                                bgGradient='radial(#3cb371,#59da6b)'
+                                bgClip='text'
+                                fontWeight='bold'
+                            >
+                                Santek.dev
+                            </Text>
                         </a>
                         -
                         <a
@@ -34,18 +44,17 @@ export default function Layout ({ children }: { children: React.ReactNode }) {
                             target="_blank"
                             rel="noopener noreferrer"
                         >
-                        <Box
-                            alignItems='center'
-                            display='flex'
-                            flexDirection='row'
-                            gap={1}
-                        >
-                            <BiLinkExternal />
-                            <Text
-                                color='blue.900'
-                            >GitHub repo</Text>
-                        </Box>
+                            <Box
+                                alignItems='center'
+                                display='flex'
+                                flexDirection='row'
+                                gap={1}
+                            >
+                                <BiLinkExternal />
+                                <Text color='blue.900'>GitHub repo</Text>
+                            </Box>
                         </a>
+
                     </Box>
 
                 </footer>

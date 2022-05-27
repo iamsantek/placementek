@@ -30,7 +30,7 @@ export const Question = ({ question, onAnswer }: Props) => {
   return (
         <Stack spacing={10}>
             {questionTypeComponents[question.type]}
-            <Heading fontWeight='900' color='brand.secondary'>{question.text}</Heading>
+            <Heading fontWeight='900' color='gray.700'>{question.text}</Heading>
             <Stack spacing={4}>
                 {question.options.map((_, index) => {
                   const radio = getRadioProps({ value: _.id })

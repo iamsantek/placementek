@@ -18,8 +18,8 @@ export const theme = extendTheme({
       700: '#144865',
       800: '#02263f',
       900: '#000b1a',
-      primary: '#020094',
-      secondary: '#DA597D'
+      primary: '#1EC276',
+      secondary: '#00A86B'
     }
   }
 })

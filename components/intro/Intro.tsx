@@ -7,7 +7,7 @@ interface Props {
 
 export const Intro = ({ onStart }: Props) => (
     <Container>
-        <Box boxSize={40} display='flex' mx='auto'>
+        <Box display='flex' mx='auto' width={['90%', '75%']}>
             <Image src='/logo.png' alt='Placementek logo' />
         </Box>
         <IntroInstruction />
