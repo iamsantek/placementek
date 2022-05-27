@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react'
 import { Question } from './question/Question'
 import { Answers, PlacementConfiguration, Question as IQuestion, Results } from '../types/types'
-import { Center, Progress, Stack, Text } from '@chakra-ui/react'
+import { Center, Progress, Spinner, Stack, Text } from '@chakra-ui/react'
 import PlacementService from '../services/PlacementService'
 import { defaultPlacementConfiguration, PlacementContext } from '../context/PlacementContext'
 import { Timer } from './Timer'
@@ -18,8 +18,10 @@ export const Questions = ({ onFinish }: Props) => {
   const [placementConfiguration, setPlacementConfiguration] = useState<PlacementConfiguration>(defaultPlacementConfiguration)
 
   const sendResults = useCallback(async (answers: Answers) => {
+    setIsLoading(true)
     const results = await PlacementService.sendResults(answers)
     onFinish(results)
+    setIsLoading(false)
   }, [onFinish])
 
   const handleNext = (question: IQuestion, answerId: string | undefined) => {
@@ -83,22 +85,32 @@ export const Questions = ({ onFinish }: Props) => {
   }, [currentQuestion])
 
   if (isLoading) {
-    return <div>Loading...</div>
+    return (
+      <Center>
+        <Spinner
+          thickness='4px'
+          speed='0.65s'
+          emptyColor='gray.200'
+          color='brand.primary'
+          size='xl'
+        />
+      </Center>
+    )
   }
 
   return (
     <PlacementContext.Provider value={placementConfiguration}>
-    <Stack spacing={6} display='flex' alignContent='center' minWidth={['100%', 'container.md']}>
-      <Progress value={(currentQuestion + 1 / totalQuestions) * 100} colorScheme='brand'/>
-      <Center flexDirection='column' gap={3}>
-        <Timer onTimerFinish={handleTimerFinish} />
-        <Text>Question {currentQuestion + 1} of {placementConfiguration?.questions.length || 0}</Text>
-      </Center>
-      <Question
-        question={placementConfiguration?.questions[currentQuestion] as IQuestion}
-        onAnswer={handleNext}
-      />
-    </Stack>
+      <Stack spacing={6} display='flex' alignContent='center' minWidth={['100%', 'container.md']}>
+        <Progress value={(currentQuestion + 1 / totalQuestions) * 100} colorScheme='brand' />
+        <Center flexDirection='column' gap={3}>
+          <Timer onTimerFinish={handleTimerFinish} />
+          <Text>Question {currentQuestion + 1} of {placementConfiguration?.questions.length || 0}</Text>
+        </Center>
+        <Question
+          question={placementConfiguration?.questions[currentQuestion] as IQuestion}
+          onAnswer={handleNext}
+        />
+      </Stack>
     </PlacementContext.Provider>
   )
 }
