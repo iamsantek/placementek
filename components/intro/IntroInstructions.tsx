@@ -1,4 +1,4 @@
-import { List, ListItem, ListIcon, Text, Box, Heading, Stack } from '@chakra-ui/react'
+import { List, ListItem, ListIcon, Text, Box, Stack } from '@chakra-ui/react'
 import { IconType } from 'react-icons'
 import { AiFillCheckCircle } from 'react-icons/ai'
 
