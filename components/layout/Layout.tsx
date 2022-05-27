@@ -9,7 +9,7 @@ export default function Layout ({ children }: { children: React.ReactNode }) {
             <div className={styles.container}>
                 <Head>
                     <title>Placementek</title>
-                    <meta name="description" content="easy-to-go score tests" />
+                    <meta name="description" content="Craft simple and customizable skill tests." />
                     <link rel="icon" href="/favicon.png" />
                     <meta name="theme-color" content="#ff0080" />
                 </Head>
