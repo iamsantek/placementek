@@ -43,6 +43,14 @@ export const ContactForm = ({ onFinish } : Props) => {
                                 value={value}
                                 onChange={onChange}
                                 countryCodeEditable={false}
+                                inputStyle={{
+                                  width: '100%',
+                                  border: '1px solid #E2E8F0'
+                                }}
+                                buttonStyle={{
+                                  border: '1px solid #E2E8F0',
+                                  backgroundColor: 'gray.100'
+                                }}
                             />
                         )}
                     />
