@@ -25,7 +25,7 @@ Craft simple and customizable skill tests to know the level of your users, stude
 
 ## What is Placementek?
 
-Placementek is an open-source app built with NextJS & ChakraUI to craft placement tests in an easy way. It provides different question types like audio, videos, and text to cover a great number of possibilities.
+Placementek is an open-source app built with [NextJS](https://nextjs.org/) & [ChakraUI](https://chakra-ui.com/) to craft placement tests in an easy way. It provides different question types like audio, videos, and text to cover a great number of possibilities.
 
 ## Features
 - **Fetch questions from an API** – Get your questions from your server or a third-party provider. You only need to transform your data into a suitable form for Placementek.
