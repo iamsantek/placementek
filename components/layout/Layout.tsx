@@ -4,8 +4,8 @@ import { Box, Text } from '@chakra-ui/react'
 import { BiLinkExternal } from 'react-icons/bi'
 import styles from '../../styles/Home.module.css'
 
-export default function Layout({ children }: { children: React.ReactNode }) {
-    return (
+export default function Layout ({ children }: { children: React.ReactNode }) {
+  return (
         <>
             <div className={styles.container}>
                 <Head>
@@ -51,5 +51,5 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 </footer>
             </div>
         </>
-    )
+  )
 }
