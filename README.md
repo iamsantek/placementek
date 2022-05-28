@@ -1,6 +1,6 @@
 <p>&nbsp;</p>
 <p align="center" style="margin: auto;">
-<img src="https://i.imgur.com/ocMHyjo.png" width=300>
+<img src="https://i.imgur.com/XKOEZPQ.png" width=300>
 <h1 align="center">Placementek</h1>
 </p>
 
