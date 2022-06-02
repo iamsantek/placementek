@@ -1,22 +1,29 @@
 import { Box, Button, Heading, Stack, Text } from '@chakra-ui/react'
-import { Results as IResults } from '../types/types'
 import ConfettiGenerator from 'confetti-js'
-import { useEffect } from 'react'
+import { useContext, useEffect } from 'react'
 import { BsWhatsapp } from 'react-icons/bs'
+import { PlacementContext } from '../context/PlacementContext'
+import { CurrentScreen } from '../types/types'
 
-interface Props {
-    results: IResults | undefined
-    onAction: () => void
-}
+export const Results = () => {
+  const { context, setContext } = useContext(PlacementContext)
 
-export const Results = ({ results, onAction }: Props) => {
+  const onAction = () => {
+    setContext({
+      ...context,
+      currentScreen: CurrentScreen.Contact
+    })
+  }
+
   useEffect(() => {
     const confettiSettings = { target: 'my-canvas' }
     const confetti = new ConfettiGenerator(confettiSettings)
     confetti.render()
 
     return () => confetti.clear()
-  }, []) // add the var dependencies or not
+  }, [])
+
+  const { results } = context
 
   return (
         <>
@@ -41,7 +48,7 @@ export const Results = ({ results, onAction }: Props) => {
                 <Button
                     colorScheme='whatsapp'
                     leftIcon={<BsWhatsapp />}
-                    onClick={() => onAction()}
+                    onClick={onAction}
                 >
                     Continue
                 </Button>

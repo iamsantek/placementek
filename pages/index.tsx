@@ -1,41 +1,51 @@
 import type { NextPage } from 'next'
 import { Questions } from '../components/Questions'
-import { Results as IResults } from '../types/types'
-import { useMemo, useState } from 'react'
+import { CurrentScreen, PlacementSettings, PlacementContext as PlacementContextType } from '../types/types'
+import { useEffect, useState } from 'react'
 import { Results } from '../components/Results'
 import { GoodByeScreen } from '../components/GoodByeScreen'
 import ContactScreen from '../components/ContactScreen'
 import { Intro } from '../components/intro/Intro'
-
-enum CurrentScreen {
-  Intro,
-  Questions,
-  Results,
-  Contact,
-  GoodBye
-}
+import { defaultPlacementConfiguration, PlacementContext } from '../context/PlacementContext'
+import PlacementService from '../services/PlacementService'
 
 const Home: NextPage = () => {
-  const [results, setResults] = useState<IResults | undefined>(undefined)
+  const [placementConfiguration, setPlacementConfiguration] = useState<PlacementSettings>(defaultPlacementConfiguration)
 
-  const [currentScreen, setCurrentScreen] = useState<CurrentScreen>(CurrentScreen.Intro)
+  useEffect(() => {
+    const fetchConfiguration = async () => {
+      const configuration = await PlacementService.fetchConfiguration()
+      const { questions, timer } = configuration
 
-  const screens = useMemo(() => ({
-    [CurrentScreen.Intro]: <Intro onStart={() => {
-      setCurrentScreen(CurrentScreen.Questions)
-      window.scrollTo(0, 0)
-    }} />,
-    [CurrentScreen.Questions]: <Questions onFinish={(results) => {
-      setResults(results)
-      setCurrentScreen(CurrentScreen.Results)
+      setPlacementConfiguration({
+        ...placementConfiguration,
+        questions,
+        timer,
+        isLoading: false
+      })
     }
-    }/>,
-    [CurrentScreen.Results]: <Results results={results} onAction={() => setCurrentScreen(CurrentScreen.Contact)} />,
-    [CurrentScreen.Contact]: <ContactScreen onFinish={() => setCurrentScreen(CurrentScreen.GoodBye)} />,
-    [CurrentScreen.GoodBye]: <GoodByeScreen />
-  }), [results])
 
-  return screens[currentScreen]
+    fetchConfiguration()
+  }, [])
+
+  const screens = {
+    [CurrentScreen.Intro]: <Intro />,
+    [CurrentScreen.Questions]: <Questions />,
+    [CurrentScreen.Results]: <Results />,
+    [CurrentScreen.Contact]: <ContactScreen />,
+    [CurrentScreen.GoodBye]: <GoodByeScreen />
+  }
+
+  const defaultContext: PlacementContextType = {
+    context: placementConfiguration,
+    setContext: setPlacementConfiguration
+  }
+
+  return (
+    <PlacementContext.Provider value={defaultContext}>
+      {screens[placementConfiguration.currentScreen]}
+    </PlacementContext.Provider>
+  )
 }
 
 export default Home

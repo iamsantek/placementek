@@ -1,22 +1,25 @@
-import { Answers, ContactFormInputs, PlacementConfiguration, Question, Results } from '../types/types'
+import { Answers, ContactFormInputs, PlacementSettings, Results } from '../types/types'
 
 class PlacementService {
-  public sendForm = async (formData: ContactFormInputs) => {
+  public sendContactForm = async (user: ContactFormInputs, results: Results) => {
     const contact = await fetch('api/contact', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(formData)
+      body: JSON.stringify({
+        user,
+        results
+      })
     })
 
     return contact.json()
   }
 
-  public fetchQuestions = async () => {
+  public fetchConfiguration = async () => {
     const questions = await fetch('api/questions')
 
-    return questions.json() as Promise<PlacementConfiguration>
+    return questions.json() as Promise<PlacementSettings>
   }
 
   public sendResults = async (answers: Answers) => {

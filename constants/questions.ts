@@ -1,4 +1,4 @@
-import { AudioQuestion, PlacementConfiguration, Question, QuestionType } from '../types/types'
+import { AudioQuestion, CurrentScreen, PlacementSettings, Question, QuestionType } from '../types/types'
 
 export const questions: Question[] = [
   {
@@ -27,10 +27,18 @@ export const questions: Question[] = [
   }
 ]
 
-export const configuration: PlacementConfiguration = {
+export const configuration: PlacementSettings = {
   timer: {
-    type: 'global',
+    type: 'question',
     timeInSeconds: 30
   },
-  questions
+  questions,
+  results: {
+    score: 0,
+    level: '',
+    correctAnswers: 0
+  },
+  isLoading: false,
+  currentScreen: CurrentScreen.Intro,
+  currentQuestionIndex: 0
 }

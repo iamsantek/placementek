@@ -1,12 +1,23 @@
 import { createContext } from 'react'
-import { PlacementConfiguration } from '../types/types'
+import { CurrentScreen, PlacementSettings, PlacementContext as PlacementContextType } from '../types/types'
 
-export const defaultPlacementConfiguration: PlacementConfiguration = {
+export const defaultPlacementConfiguration: PlacementSettings = {
   timer: {
     type: 'question',
-    timeInSeconds: 30
+    timeInSeconds: 0
   },
-  questions: []
+  questions: [],
+  results: {
+    score: 0,
+    level: '',
+    correctAnswers: 0
+  },
+  isLoading: true,
+  currentScreen: CurrentScreen.Intro,
+  currentQuestionIndex: 0
 }
 
-export const PlacementContext = createContext<PlacementConfiguration>(defaultPlacementConfiguration)
+export const PlacementContext = createContext<PlacementContextType>({
+  context: defaultPlacementConfiguration,
+  setContext: () => {}
+})

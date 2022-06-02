@@ -1,21 +1,24 @@
 import { Button, FormControl, FormLabel, Input, Stack } from '@chakra-ui/react'
+import { useContext } from 'react'
 import { useForm, SubmitHandler, Controller } from 'react-hook-form'
 import PhoneInput from 'react-phone-input-2'
 import 'react-phone-input-2/lib/style.css'
+import { PlacementContext } from '../context/PlacementContext'
 import PlacementService from '../services/PlacementService'
-import { ContactFormInputs } from '../types/types'
+import { ContactFormInputs, CurrentScreen } from '../types/types'
 
-interface Props {
-    onFinish: (data: ContactFormInputs) => void;
-}
-
-export const ContactForm = ({ onFinish } : Props) => {
-  const { control, register, handleSubmit, watch } = useForm<ContactFormInputs>()
+export const ContactForm = () => {
+  const { control, register, handleSubmit } = useForm<ContactFormInputs>()
+  const { context, setContext } = useContext(PlacementContext)
+  const { results } = context
 
   const sendContactForm = async (form: ContactFormInputs) => {
-    const formData = watch()
-    await PlacementService.sendForm(formData)
-    onFinish(form)
+    await PlacementService.sendContactForm(form, results)
+
+    setContext({
+      ...context,
+      currentScreen: CurrentScreen.GoodBye
+    })
   }
 
   const onSubmit: SubmitHandler<ContactFormInputs> = data => sendContactForm(data)

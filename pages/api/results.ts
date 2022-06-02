@@ -39,6 +39,7 @@ export default function handler (
 ) {
   const answersSent = req.body.answers as Answers
   let score: number = 0
+  let correctAnswers: number = 0
 
   Object.entries(answersSent).forEach(([questionId, answer]) => {
     if (!answer) {
@@ -47,11 +48,17 @@ export default function handler (
     }
 
     const selectedAnswer = answers.find(a => a.id === questionId)?.keys[answer] || 0
+
+    if (selectedAnswer === 1) {
+      correctAnswers++
+    }
+
     score += selectedAnswer
   })
 
   res.status(200).json({
     score,
-    level: getEnglishLevel(score)
+    level: getEnglishLevel(score),
+    correctAnswers
   })
 }

@@ -27,7 +27,8 @@ export type Options = {
 
 export type Results = {
     score: number;
-    level: string
+    level: string;
+    correctAnswers: number;
 }
 
 export interface AnswerKey {
@@ -50,7 +51,24 @@ export type Timer = {
     timeInSeconds: number
 }
 
-export type PlacementConfiguration = {
+export type PlacementSettings = {
     timer: Timer
     questions: Question[]
+    results: Results,
+    isLoading: boolean,
+    currentScreen: CurrentScreen
+    currentQuestionIndex: number
+  }
+
+export type PlacementContext = {
+    context: PlacementSettings;
+    setContext: (context: PlacementSettings) => void;
+}
+
+export enum CurrentScreen {
+    Intro,
+    Questions,
+    Results,
+    Contact,
+    GoodBye
   }

@@ -1,11 +1,11 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { configuration } from '../../constants/questions'
-import { PlacementConfiguration } from '../../types/types'
+import { PlacementSettings } from '../../types/types'
 
 export default function handler (
   req: NextApiRequest,
-  res: NextApiResponse<PlacementConfiguration>
+  res: NextApiResponse<PlacementSettings>
 ) {
   res.status(200).json(configuration)
 }
