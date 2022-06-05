@@ -4,7 +4,7 @@ export const questions: Question[] = [
   {
     type: QuestionType.AUDIO,
     id: '1',
-    text: 'I am a audio question, and the right answer is Audio.',
+    text: 'I am an audio question, and the right answer is Audio.',
     options: [
       { id: '1-a', value: 'Video' },
       { id: '1-b', value: 'Image' },
